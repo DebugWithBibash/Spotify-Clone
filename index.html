@@ -14,15 +14,28 @@
         <div class="logos">
             <img src="svg/logo.svg" alt="Spotify" class="spotify-logo logo">
 
-            <img src="svg\house.svg" alt="house" class="house-svg logo">
+            <img src="svg/house.svg" alt="house" class="house-svg logo">
+        <div class="search">
+            <img src="svg/search.svg" alt="Search" class="search-svg logo ">
+            <input type="search" name="" id="search" placeholder="What do you want to play?">
+            <span>|</span>
+            <img src="svg/cross.svg" alt="browse" class="logo browse-svg">
+        </div>
 
-            <img src="svg/search.svg" alt="Search" class="search-svg logo">
         </div>
         <div class="nav-content">
-            <span>Premium Support Download</span>
-            <span>Install App</span>
-            <span>Sign up</span>
-            <button>Log in</button>
+            <div class="nav1 nav-contents">
+                <a href="#">Premium</a>
+                <a href="#">Support</a>
+                <a href="#">Download</a>
+                <span>|</span>
+
+            </div>
+            <div class="nav2 nav-contents">
+                <a href="#">Install App</a>
+                <a href="#">Sign up</a>
+                <button>Log in</button>
+            </div>
         </div>
     </nav>
 
@@ -30,18 +43,15 @@
         <div class="library border">
             <div class="lib-top">
                 <span>Your Library</span>
-                <div class="plusCreate">
-                    <img src="svg/plus.svg" alt="plus" class="plus">
-                    <span class="">Create</span>
-                </div>
+                    <button class="round-btn" data-tooltip="Create a playlist,folder, or jam"><img src="svg/plus.svg" alt="plus" class="plus"></button>
             </div>
-            <div class="create-playlist border">
-                <div class="playlist1 border">
+            <div class="create-playlist">
+                <div class="playlist1">
                     <h3>Create your first playlist</h3>
                     <p>It's easy, we'll help you</p>
                     <button>Create playlist</button>
                 </div>
-                <div class="playlist2 border">
+                <div class="playlist2">
                     <h3>Let's find some podcasts to follow</h3>
                     <p>We'll keep you updated on new episodes</p>
                     <button>Browse podcasts</button>
