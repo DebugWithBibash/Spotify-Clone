@@ -1,7 +1,19 @@
 .border{
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
 }
 
 .flex{
     display: flex;
+}
+
+.button-radius{
+    border-radius: 15px;
+}
+
+.first-p{
+
+}
+
+.second-p{
+
 }
