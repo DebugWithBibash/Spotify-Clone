@@ -21,7 +21,8 @@
 body {
     background-color: black;
     color: white;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
 }
@@ -143,8 +144,7 @@ nav {
 
 .main {
     display: flex;
-    min-height: 0;
-    flex: 1;
+    height: calc(100vh - 140px);
     gap: 10px;
     padding: 10px;
 }
@@ -157,9 +157,9 @@ nav {
     margin: 0px 5px;
     background-color: var(--library-color);
     border-radius: var(--border-rad);
-    overflow-y: auto;
+    /* overflow-y: auto;
     scroll-behavior: smooth;
-    scrollbar-width: none;
+    scrollbar-width: none; */
 }
 
 .albums {
@@ -173,7 +173,7 @@ nav {
     scrollbar-width: none;
     /* Firefox */
     border-radius: var(--border-rad);
-    min-height: 0;
+    position: relative;
 }
 
 .albums::-webkit-scrollbar {
@@ -205,7 +205,7 @@ nav {
     height: 35px;
     width: 35px;
     box-sizing: border-box;
-    
+    position: relative;
     border: 1px var(--library-color);
     appearance: none;
     -webkit-appearance: none;
@@ -231,8 +231,8 @@ nav {
 .round-btn::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
+    bottom: calc(100% + 3px);
+    left: 20%;
     transform: translateX(-70%);
 
     background-color: #282828;
@@ -240,16 +240,16 @@ nav {
     padding: 6px 10px;
     border-radius: 4px;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 12px;
     white-space: nowrap;
-    
+    z-index: 1;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
 .round-btn:hover::after {
-    opacity: 1;
+    opacity: 2;
 }
 
 .create-playlist {
@@ -304,6 +304,8 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 .extra .info {
@@ -454,4 +456,89 @@ nav {
     }
 }
 
+.playbar{
+    position: fixed;
+    bottom: 80px;
+    
+    left: 28%;
+    width: 70%;
+    height: 50px ;
+    background-color: rgb(221, 203, 203);
+    border-radius: var(--border-rad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: invert();
+}
 
+.songbuttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.songbuttons img{
+    width: 40px;
+    transition: all 0.2s ease-in;
+}
+
+.songbuttons img:hover{
+    transform:scale(1.2);
+}
+
+.songList{
+    padding: 0px 30px;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    min-height: 0;
+    scrollbar-width: none;
+}
+
+.songList ul {
+    list-style-type: decimal;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.songList ul li {
+    position: relative;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: var(--border-rad);
+    list-style-position: inside;
+    cursor: pointer;
+}
+
+.songList ul li::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    width: calc(100% - 20px);
+    height: 2px;
+    background-color: #57c97f;
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.songList ul li:hover {
+    color: #57c97f;
+}
+
+.songList ul li:hover::after {
+    transform: scaleX(1);
+}
+
+.seekbar{
+    width: 98%;
+    border: 2px solid rgb(14, 13, 13);
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    border-radius: var(--border-rad);
+    height: 10px;    
+}
