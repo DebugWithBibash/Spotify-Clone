@@ -461,14 +461,14 @@ nav {
     bottom: 80px;
     
     left: 28%;
+
     width: 70%;
-    height: 50px ;
+    height: 60px ;
     background-color: rgb(221, 203, 203);
     border-radius: var(--border-rad);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     filter: invert();
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .songbuttons{
@@ -479,12 +479,7 @@ nav {
 }
 
 .songbuttons img{
-    width: 40px;
-    transition: all 0.2s ease-in;
-}
-
-.songbuttons img:hover{
-    transform:scale(1.2);
+    width: 30px;
 }
 
 .songList{
@@ -534,11 +529,32 @@ nav {
 }
 
 .seekbar{
-    width: 98%;
-    border: 2px solid rgb(14, 13, 13);
+    width:98%;
+    background: black;
     position: absolute;
-    margin: auto;
     bottom: 0;
     border-radius: var(--border-rad);
-    height: 10px;    
+    height: 5px;   
+}
+
+.circle{
+    width: 23px;
+    height: 23px;
+    border-radius: 13px;
+    background-color: black;
+    position: relative;
+    bottom: 9px;
+    left: 0%;
+    transition: left 0.5s ease-in-out ;
+}
+
+.name_time{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 5px;
+}
+
+.songTime, .songInfo{
+    color: rgb(2, 2, 2);
 }

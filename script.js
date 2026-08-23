@@ -1,5 +1,6 @@
 console.log("Javscript starts now");
 
+let pausePlayButton = document.querySelector(".pause-play");
 async function getSongs() {
     let response = await fetch("http://127.0.0.1:5500/songs/");
     let songs = await response.text();
@@ -33,8 +34,6 @@ async function main() {
     pausePlay(play);
     
     
-    // audio.pay();
-    
     
     // audio.addEventListener("timeupdate", () =>{
     //     let duration = audio.duration;
@@ -56,13 +55,15 @@ function displaySong(songs){
         console.log(songName)
         songUl.innerHTML = songUl.innerHTML + `<li>${songName}</li>`;
     }
-    let lis = songUl.getElementsByTagName("li");
+    console.log(songUl)
+    return songUl;
     
-    return lis;
 }
 
-function playSong(songs, liss){
+function playSong(songs, songUl){
+    let liss = songUl.getElementsByTagName("li");
     let audio = new Audio();
+    
     
     for (let i = 0; i < liss.length; i++){
         liss[i].addEventListener("click", (e) => {
@@ -70,32 +71,45 @@ function playSong(songs, liss){
             console.log(currentSong);
             // audio.currentTime = 0;
             audio.pause();
-            audio.src = songs[i]
+            audio.src = songs[i];
             audio.play();
+            pausePlayButton.src = "svg/pause.svg";
+            song_name_duration(currentSong.innerText);
+
         })
     }
-
     return audio;
 }
 
 function pausePlay(audio){
-    let pause = document.querySelector(".pause-play");
-    pause.addEventListener("click", () => {
-        console.log("Clicked");
-        console.log(audio.src)
-        if(audio.src){
-            console.log(audio.src)
-
+    pausePlayButton.addEventListener("click", () => {
+        console.log("before" + audio.src)
             if(audio.paused){
                 audio.play();
+                pausePlayButton.src = "svg/pause.svg"
+                console.log("after -" + pausePlay.src);
+                // pausePlay.style.backgroundColor = "red";
+                console.log("play clicked")
             }
-    
+            
             else{
                 audio.pause();
+                pausePlayButton.src ="svg/play.svg"
+                console.log("after" + pausePlay.src);
+                // pausePlay.style.backgroundColor = "blue";
+                console.log("pause clicked")
     
             }
-        }
-    })
+            })
+        
+}
+
+function song_name_duration(songName){
+    let songInfo = document.querySelector(".songInfo")
+    let songTime = document.querySelector(".songTime")
+    console.log("Name and timem function is running ")
+    songInfo.innerHTML = songName;
+    songTime.innerHTML = "00:00"
 }
 
 main();
