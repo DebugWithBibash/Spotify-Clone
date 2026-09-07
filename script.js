@@ -1,72 +1,69 @@
 console.log("Javscript starts now");
 
 let pausePlayButton = document.querySelector(".pause-play");
+let previousButton = document.querySelector(".previous");
+let nextButton = document.querySelector(".next");
+let currentIndex = 0;
+console.log(`current index ${currentIndex}`)
+
 async function getSongs() {
     let response = await fetch("http://127.0.0.1:5500/songs/");
     let songs = await response.text();
-    console.log(songs);
+    // console.log(songs);
     let div = document.createElement("div");
     div.innerHTML = songs;
-
+    
     // let lis = div.getElementsByTagName("li");
     // console.log(lis);
     let as = div.getElementsByTagName("a");
     // console.log(as);
-
+    
     let allSongs = [];
-
+    
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
             allSongs.push(element.href);
         }
     }
-
+    
     return allSongs;
 }
 
 async function main() {
-    let songs = await getSongs();
-    console.log(songs);
-
+    let songs = await getSongs(); //this is the url of the song
+    console.log(`These are the songs url ${songs}`);
+    
     let songDisplay = displaySong(songs);
-    let play = playSong(songs,songDisplay);
-    pausePlay(play);
-    
-    
-    
-    // audio.addEventListener("timeupdate", () =>{
-    //     let duration = audio.duration;
-    //     let currentTime = audio.currentTime;
-    //     console.log(duration);
-    //     console.log(currentTime)
-    // })
+    let plays = playSong(songs, songDisplay);
+    pausePlay(plays);
+    nextPrevious(songs, plays, songDisplay);
     
 }
 
-function displaySong(songs){
-
+function displaySong(songs) {
+    
     let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0];
     
-    for(song of songs){
-        let part = song.split("/");   //seperating the names using split("/")
+    for (song of songs) {
+        let part = song.split("/"); //seperating the names using split("/")
         console.log(part);
-        let songName = decodeURIComponent(part[part.length - 1]);    //takes URL-encoded text and turns it back into normal text.
-        console.log(songName)
+        let songName = decodeURIComponent(part[part.length - 1]); //takes URL-encoded text and turns it back into normal text.
+        console.log(`these are the songs name ${songName}`)
         songUl.innerHTML = songUl.innerHTML + `<li>${songName}</li>`;
     }
-    console.log(songUl)
+    
     return songUl;
     
 }
 
-function playSong(songs, songUl){
+function playSong(songs, songUl) {
     let liss = songUl.getElementsByTagName("li");
     let audio = new Audio();
     
-    
-    for (let i = 0; i < liss.length; i++){
+    for (let i = 0; i < liss.length; i++) {
         liss[i].addEventListener("click", (e) => {
+            currentIndex = i;
             let currentSong = e.target;
             console.log(currentSong);
             // audio.currentTime = 0;
@@ -74,37 +71,78 @@ function playSong(songs, songUl){
             audio.src = songs[i];
             audio.play();
             pausePlayButton.src = "svg/pause.svg";
+            
+            //Displa name of the song in the audio player
             song_name_duration(currentSong.innerText);
-
+            
         })
     }
     return audio;
 }
 
-function pausePlay(audio){
+function pausePlay(audio) {
     pausePlayButton.addEventListener("click", () => {
         console.log("before" + audio.src)
-            if(audio.paused){
-                audio.play();
-                pausePlayButton.src = "svg/pause.svg"
-                console.log("after -" + pausePlay.src);
-                // pausePlay.style.backgroundColor = "red";
-                console.log("play clicked")
-            }
+        if (audio.paused) {
+            audio.play();
+            pausePlayButton.src = "svg/pause.svg"
+            console.log("after -" + pausePlay.src);
+            // pausePlay.style.backgroundColor = "red";
+            console.log("play clicked")
+        } else {
+            audio.pause();
+            pausePlayButton.src = "svg/play.svg"
+            console.log("after" + pausePlay.src);
+            // pausePlay.style.backgroundColor = "blue";
+            console.log("pause clicked")
             
-            else{
-                audio.pause();
-                pausePlayButton.src ="svg/play.svg"
-                console.log("after" + pausePlay.src);
-                // pausePlay.style.backgroundColor = "blue";
-                console.log("pause clicked")
+        }
+    })
     
-            }
-            })
-        
 }
 
-function song_name_duration(songName){
+function nextPrevious(songs, playSong, displaySong) {
+    console.log(songs.length);
+    let liss = displaySong.getElementsByTagName("li");
+    let currentSong = liss[0];
+    
+    nextButton.addEventListener("click", (e) => {
+        if (currentIndex < songs.length - 1) {
+            currentIndex = currentIndex + 1;
+            
+            currentSong = liss[currentIndex];
+            
+            playSong.pause();
+            
+            playSong.src = songs[currentIndex];
+            
+            song_name_duration(currentSong.innerText);
+            
+            playSong.play();
+
+            pausePlayButton.src = "svg/pause.svg";
+            
+            console.log("This is the current song:", currentSong);
+            console.log("Current index:", currentIndex);
+        }
+    })
+    
+    previousButton.addEventListener("click", (e) => {
+        if (currentIndex != 0) {
+            currentIndex = currentIndex - 1;
+            playSong.pause();
+            currentSong = liss[currentIndex];
+            console.log(currentSong);
+            playSong.src = songs[currentIndex];
+            song_name_duration(currentSong.innerText);
+            playSong.play();
+            pausePlayButton.src = "svg/pause.svg";
+        }
+    })
+    
+}
+
+function song_name_duration(songName) {
     let songInfo = document.querySelector(".songInfo")
     let songTime = document.querySelector(".songTime")
     console.log("Name and timem function is running ")
@@ -113,4 +151,3 @@ function song_name_duration(songName){
 }
 
 main();
-
