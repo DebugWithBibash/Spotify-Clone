@@ -37,7 +37,10 @@ async function main() {
     let songDisplay = displaySong(songs);
     let plays = playSong(songs, songDisplay);
     pausePlay(plays);
-    nextPrevious(songs, plays, songDisplay);
+    let next_previous_song = nextPrevious(songs, plays, songDisplay);
+
+    songDuration(plays,songs);
+
     
 }
 
@@ -74,6 +77,7 @@ function playSong(songs, songUl) {
             
             //Displa name of the song in the audio player
             song_name_duration(currentSong.innerText);
+            
             
         })
     }
@@ -138,16 +142,35 @@ function nextPrevious(songs, playSong, displaySong) {
             playSong.play();
             pausePlayButton.src = "svg/pause.svg";
         }
-    })
+    }) 
     
+    return currentSong;
 }
 
 function song_name_duration(songName) {
     let songInfo = document.querySelector(".songInfo")
-    let songTime = document.querySelector(".songTime")
     console.log("Name and timem function is running ")
     songInfo.innerHTML = songName;
-    songTime.innerHTML = "00:00"
+}
+
+function songDuration(playAudio, currrentSong){
+    let songTime = document.querySelector(".songTime");
+    songTime.innerHTML = "00:00";
+    let minutes = 0;
+    let seconds = 0;
+    let song_duration = 0;
+
+    playAudio.addEventListener("loadedmetadata", (e) => {
+        console.log(playAudio.duration);
+        song_duration = (playAudio.duration);
+        seconds = Math.floor(song_duration % 60);
+        minutes = Math.floor(song_duration / 60);
+
+        console.log(`Minutes = ${minutes} and seconds = ${seconds}`);
+        songTime.innerHTML = `${minutes}:${seconds}`;
+    })
+
+
 }
 
 main();

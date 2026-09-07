@@ -15,6 +15,7 @@
     --grey-color: #202020;
     --library-color: #121212;
     --border-rad: 10px;
+    --seekInfo-height: 30px;
 
 }
 
@@ -552,9 +553,31 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0px 5px;
 }
 
 .songTime, .songInfo{
     color: rgb(2, 2, 2);
+    font: 10px;
+}
+
+
+.songInfo {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+    overflow: auto;
+    scrollbar-width: none;
+    height: var(--seekInfo-height);
+    
+}
+
+.songbuttons {
+    flex: 0 0 auto;
+    height: var(--seekInfo-height);
+}
+
+.songTime {
+    height: var(--seekInfo-height);
+    width: 50px;
+    min-width: 50px;
 }
