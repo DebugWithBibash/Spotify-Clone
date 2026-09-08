@@ -155,22 +155,36 @@ function song_name_duration(songName) {
 
 function songDuration(playAudio, currrentSong){
     let songTime = document.querySelector(".songTime");
-    songTime.innerHTML = "00:00";
-    let minutes = 0;
-    let seconds = 0;
+    songTime.innerHTML = "0:0 / 0:0";
+    let total_minutes = 0;
+    let total_seconds = 0;
     let song_duration = 0;
+    let current_mins = 0;
+    let current_sec = 0;
+    let current_duration = 0;
 
     playAudio.addEventListener("loadedmetadata", (e) => {
         console.log(playAudio.duration);
         song_duration = (playAudio.duration);
-        seconds = Math.floor(song_duration % 60);
-        minutes = Math.floor(song_duration / 60);
+        total_seconds = Math.floor(song_duration % 60);
+        total_minutes = Math.floor(song_duration / 60);
+        songTime.innerHTML = `${current_mins}:${current_sec}/${total_minutes}:${total_seconds}`;
 
-        console.log(`Minutes = ${minutes} and seconds = ${seconds}`);
-        songTime.innerHTML = `${minutes}:${seconds}`;
     })
+    
+    playAudio.addEventListener("timeupdate", () => {
+        console.log(playAudio.currentTime);
+        current_duration = playAudio.currentTime;
+        current_mins = Math.floor(current_duration / 60);
+        current_sec = Math.floor(current_duration % 60);
 
-
+        console.log(current_mins + " " + current_sec)
+        
+        songTime.innerHTML = `${current_mins}:${current_sec}/${total_minutes}:${total_seconds}`;
+        
+        
+    })
+    console.log(`Minutes = ${total_minutes} and seconds = ${total_seconds}`);
 }
 
 main();

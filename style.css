@@ -434,8 +434,9 @@ nav {
 
 .cardContainer .card img {
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 10px;
+    height: 200px;
     
 }
 
@@ -578,6 +579,7 @@ nav {
 
 .songTime {
     height: var(--seekInfo-height);
-    width: 50px;
-    min-width: 50px;
+    width: 90px;
+    max-width: 100px;
+    min-width: 30px;
 }
