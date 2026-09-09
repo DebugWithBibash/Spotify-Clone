@@ -7,7 +7,7 @@ let currentIndex = 0;
 console.log(`current index ${currentIndex}`)
 
 async function getSongs() {
-    let response = await fetch("http://127.0.0.1:5500/songs/");
+    let response = await fetch("./songs/");
     let songs = await response.text();
     // console.log(songs);
     let div = document.createElement("div");
@@ -37,9 +37,10 @@ async function main() {
     let songDisplay = displaySong(songs);
     let plays = playSong(songs, songDisplay);
     pausePlay(plays);
-    let next_previous_song = nextPrevious(songs, plays, songDisplay);
-
-    songDuration(plays,songs);
+    nextPrevious(songs, plays, songDisplay);
+    songDuration(plays);
+    seekbar(plays);
+    
 
     
 }
@@ -153,7 +154,8 @@ function song_name_duration(songName) {
     songInfo.innerHTML = songName;
 }
 
-function songDuration(playAudio, currrentSong){
+//Function to show the total duration and current time duration of the song
+function songDuration(playAudio){
     let songTime = document.querySelector(".songTime");
     songTime.innerHTML = "0:0 / 0:0";
     let total_minutes = 0;
@@ -187,4 +189,11 @@ function songDuration(playAudio, currrentSong){
     console.log(`Minutes = ${total_minutes} and seconds = ${total_seconds}`);
 }
 
+function seekbar(playSong){
+    let seek = document.querySelector(".seekbar")
+
+    playSong.addEventListener("timeupdate", (e) => {
+        
+    })
+}
 main();
