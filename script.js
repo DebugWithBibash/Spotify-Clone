@@ -49,7 +49,7 @@ function displaySong(songs) {
     
     let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0];
     
-    for (song of songs) {
+    for (const song of songs) {
         let part = song.split("/"); //seperating the names using split("/")
         console.log(part);
         let songName = decodeURIComponent(part[part.length - 1]); //takes URL-encoded text and turns it back into normal text.
@@ -190,10 +190,12 @@ function songDuration(playAudio){
 }
 
 function seekbar(playSong){
-    let seek = document.querySelector(".seekbar")
+    let circle = document.querySelector(".circle")
 
     playSong.addEventListener("timeupdate", (e) => {
-        
+        let percentage = (playSong.currentTime/playSong.duration) * 100;
+        console.log(percentage)
+        circle.style.left = `${percentage}%`
     })
 }
 main();
