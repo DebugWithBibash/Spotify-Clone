@@ -432,12 +432,18 @@ nav {
     filter: brightness(0.8);
 }
 
-.cardContainer .card img {
+.cardContainer .card .poster {
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
-    height: 200px;
-    
+    height: 200px;   
+}
+
+.cardContainer .card .playIcon {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    height: 60px;   
 }
 
 .play{
