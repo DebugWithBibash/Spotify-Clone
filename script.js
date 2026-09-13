@@ -182,7 +182,7 @@ function songDuration(playAudio){
 
         console.log(current_mins + " " + current_sec)
         
-        songTime.innerHTML = `${current_mins}:${current_sec}/${total_minutes}:${total_seconds}`;
+        songTime.innerHTML = `${current_mins.toString().padStart(2,'0')}:${current_sec.toString().padStart(2,'0')}/${total_minutes}:${total_seconds}`;
         
         
     })
@@ -190,10 +190,24 @@ function songDuration(playAudio){
 }
 
 function seekbar(playSong){
-    let seek = document.querySelector(".seekbar")
+    let circle = document.querySelector(".circle")
+    let seekbar = document.querySelector(".seekbar")
 
     playSong.addEventListener("timeupdate", (e) => {
-        
+        let percentage = (playSong.currentTime / playSong.duration) * 100;
+        console.log(percentage);
+
+        circle.style.left = `${percentage}%`
+   seekbar.style.background = `linear-gradient(to right, #9e2020 0%, #9e2020 ${percentage}%, black ${percentage}%, black 100%)`
+    })
+
+    seekbar.addEventListener("click", (e) => {
+        let moveCircle = (e.offsetX/e.target.getBoundingClientRect().width) * 100
+        console.log(e)
+        console.log(e.offsetX, e.target.getBoundingClientRect().width)
+        console.log((e.offsetX/e.target.getBoundingClientRect().width) * 100)
+        circle.style.left = `${moveCircle}%`
+        playSong.currentTime = `${(playSong.duration * moveCircle) / 100}`
     })
 }
 main();

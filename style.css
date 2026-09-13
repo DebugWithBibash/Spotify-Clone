@@ -542,7 +542,8 @@ nav {
     position: absolute;
     bottom: 0;
     border-radius: var(--border-rad);
-    height: 5px;   
+    height: 5px;  
+    cursor: pointer; 
 }
 
 .circle{
