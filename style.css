@@ -590,3 +590,91 @@ nav {
     max-width: 100px;
     min-width: 30px;
 }
+
+@media (max-width: 1400px) {
+    .library {
+        position: absolute;
+        left: -233px;
+        width: 233px;
+        z-index: 1;
+        transition: all 0.4s;
+    }
+
+    .nav1{
+        display: none;
+    }
+
+    .nav2 > :first-child{
+        display: none;
+    }
+
+    .albums {
+        width: 95vw;
+    }
+
+    .playbar {
+        width: 95vw;
+        left: 2.5vw;
+    }
+}
+
+@media (max-width: 900px) {
+    .search {
+        width: 200px;
+    }
+
+    #search {
+        width: 140px;
+    }
+
+    .nav2 {
+        gap: 5px;
+        font-size: small;
+    }
+
+    .nav2 button {
+        padding:5px 10px;
+    }
+
+    .albums {
+        padding: 5px 15px;
+    }
+
+    .cardContainer {
+        gap: 5px;
+    }
+}
+
+
+@media (max-width:550px){
+    .nav2{
+        display: none;
+    }
+
+    .search{
+       width: 290px;
+        height: 40px;
+    }
+
+    .logo{
+        gap: 15px;
+        width: 24px;
+    }
+}
+@media (max-width:416px){
+    .nav2{
+        display: none;
+    }
+
+    .search{
+       width:250px;
+        height: 40px;
+    }
+
+    .logos{
+        gap: 5px;
+        padding-left: 5x;
+    }
+
+
+}

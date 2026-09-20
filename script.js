@@ -1,5 +1,7 @@
 console.log("Javscript starts now");
 
+let left = document.querySelector(".library");
+let ham = document.querySelector(".spotify-logo")
 let pausePlayButton = document.querySelector(".pause-play");
 let previousButton = document.querySelector(".previous");
 let nextButton = document.querySelector(".next");
@@ -39,10 +41,23 @@ async function main() {
     pausePlay(plays);
     nextPrevious(songs, plays, songDisplay);
     songDuration(plays);
-    seekbar(plays);
-    
+    seekbar(plays);  
+    sideOptions(); 
+}
 
-    
+function sideOptions(){
+    let clicked = false;
+    ham.addEventListener("click", () => {
+        console.log("clicked albums")
+        clicked = !clicked;
+
+        if(clicked){
+            left.style.left = 0;    
+        }
+        else{
+            left.style.left = `-333px`
+        } 
+    })
 }
 
 function displaySong(songs) {
