@@ -598,12 +598,10 @@ nav {
         width: 233px;
         z-index: 1;
         transition: all 0.4s;
-        height: 68% ;
+        height: 68vh ;
     }
 
-    .main{
-        padding: 3px;
-    }
+  
 
     .nav1{
         display: none;
@@ -614,7 +612,7 @@ nav {
     }
 
     .albums {
-        width: 95vw;
+        width: 98vw;
 
     }
 
@@ -626,11 +624,11 @@ nav {
 
 @media (max-width: 900px) {
     .search {
-        width: 200px;
+        width: 300px;
     }
 
     #search {
-        width: 140px;
+        width: 380px;
     }
 
     .nav2 {
@@ -658,13 +656,20 @@ nav {
     }
 
     .search{
-       width: 290px;
+       width: 300px;
         height: 40px;
     }
 
+    #search {
+        width: 100px;
+      
+        
+    }
+
+
     .logo{
         gap: 15px;
-        width: 24px;
+       
     }
 }
 @media (max-width:416px){
@@ -673,13 +678,22 @@ nav {
     }
 
     .search{
-       width:250px;
+       width:200px;
         height: 40px;
     }
 
     .logos{
         gap: 5px;
         padding-left: 5x;
+    }
+
+    .songInfo {
+    width: 84px;
+    min-width: 84px;
+    max-width: 84px;}
+
+    .songbuttons{
+        gap: 5px;
     }
 
 
