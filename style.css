@@ -598,6 +598,11 @@ nav {
         width: 233px;
         z-index: 1;
         transition: all 0.4s;
+        height: 68% ;
+    }
+
+    .main{
+        padding: 3px;
     }
 
     .nav1{
@@ -610,6 +615,7 @@ nav {
 
     .albums {
         width: 95vw;
+
     }
 
     .playbar {
